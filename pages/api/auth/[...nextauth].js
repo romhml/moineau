@@ -4,9 +4,11 @@ import { db } from '@/db'
 import { SQLiteDrizzleAdapter } from '@/db/drizzleAdapter'
 
 export const authOptions = {
-  secret: process.env.AUTH_SECRET,
   adapter: SQLiteDrizzleAdapter(db),
-  // Configure one or more authentication providers
+  pages: {
+    signIn: '/signin',
+  },
+
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,

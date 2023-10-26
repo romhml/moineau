@@ -1,87 +1,46 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowRight } from 'lucide-react'
-import { useForm } from 'react-hook-form'
-import { Post } from '@/components/Post'
-import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/form'
-import { createPostSchema, CreatePost } from '@/server/schemas'
-import { trpc } from '@/utils/trpc'
-import Layout from './layout'
+import { Github } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { Footer } from '@/components/Footer'
+import { NavBar } from '@/components/NavBar'
+import { Badge } from '@/components/ui/badge'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { cn } from '@/utils/cn'
 
 export default function Home() {
-  const form = useForm<CreatePost>({
-    resolver: zodResolver(createPostSchema),
-    defaultValues: {
-      content: '',
-    },
-  })
-
-  const { data: posts } = trpc.posts.list.useQuery({})
-  const mutation = trpc.posts.create.useMutation({
-    onSuccess: (data) => {
-      form.reset()
-      posts?.unshift(data)
-    },
-  })
-
-  function submit(data: CreatePost) {
-    mutation.mutate(data)
-  }
-
+  const router = useRouter()
   return (
-    <Layout>
-      <div className="max-w-lg w-full mx-auto border-b border-x border-slate-200 rounded-b">
-        <section>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(submit)}
-              className="p-4"
+    <div className="flex flex-col justify-center min-h-screen">
+      <NavBar />
+
+      <div className="grow flex flex-col items-center px-8 pt-6 md:pb-12 md:pt-10 lg:py-20">
+        <section className="text-center">
+          <Badge>Moineau</Badge>
+          <p className="text-6xl font-heading font-bold mt-1">
+            An example app <br /> powered by Next.js
+          </p>
+          <div className="mt-8 flex justify-center items-center space-x-4">
+            <Button
+              variant="outline"
+              onClick={() => router.push('/posts')}
             >
-              <FormField
-                name="content"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <textarea
-                      className="resize-none text-md w-full focus:outline-none"
-                      placeholder="What's on your mind today?"
-                      rows={5}
-                      {...field}
-                    />
-                    <div className="flex justify-between">
-                      <FormMessage />
-                      <FormDescription />
-                      <Button
-                        type="submit"
-                        variant="ghost"
-                      >
-                        Submit
-                        <ArrowRight className="ml-1 h-4 w-4" />
-                      </Button>
-                    </div>
-                  </FormItem>
-                )}
-              />
-            </form>
-          </Form>
-        </section>
-        <section>
-          {posts?.map((post) => (
-            <Post
-              key={post.id}
-              authorName={post.author.name || 'N/A'}
-              authorImage={post.author.image || undefined}
-              content={post.content}
-            />
-          ))}
+              Get started
+            </Button>
+
+            <Link
+              href="https://github.com/romhml/moineau"
+              target="_blank"
+              rel="noreferrer"
+              className={cn(buttonVariants())}
+            >
+              <Github className="w-5 h-5 mr-1" />
+              <span>GitHub</span>
+            </Link>
+          </div>
         </section>
       </div>
-    </Layout>
+
+      <Footer />
+    </div>
   )
 }

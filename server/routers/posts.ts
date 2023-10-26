@@ -8,21 +8,27 @@ export const postsRouter = router({
   list: protectedProcedure
     .input(
       z.object({
-        offset: z.number().default(0),
-        limit: z.number().default(10),
+        cursor: z.number().default(0),
+        limit: z.number().max(50).default(10),
         authorId: z.string().optional().nullish(),
       }),
     )
     .query(async ({ input }) => {
-      return await db.query.posts.findMany({
+      const posts = await db.query.posts.findMany({
         columns: { id: true, content: true, createdAt: true },
         with: { author: { columns: { id: true, image: true, name: true } } },
         where: (posts, { eq }) =>
           input?.authorId ? eq(posts.authorId, input?.authorId) : undefined,
         orderBy: (posts, { desc }) => [desc(posts.createdAt)],
         limit: input.limit,
-        offset: input.offset,
+        offset: input.cursor,
       })
+
+      return {
+        items: posts,
+        nextCursor:
+          posts.length < input.limit ? undefined : input.cursor + input.limit,
+      }
     }),
 
   create: protectedProcedure

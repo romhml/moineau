@@ -1,8 +1,11 @@
 'use client'
 
-import { LogOut } from 'lucide-react'
+import { LogOut, Mail } from 'lucide-react'
 import { signIn, signOut, useSession } from 'next-auth/react'
+import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -15,6 +18,7 @@ import { cn } from '@/utils/cn'
 
 function UserMenu() {
   const { status, data } = useSession()
+  const router = useRouter()
 
   if (status === 'authenticated') {
     return (
@@ -27,6 +31,10 @@ function UserMenu() {
         </DropdownMenuTrigger>
 
         <DropdownMenuContent className="mr-2">
+          <DropdownMenuItem onClick={() => router.push('/posts')}>
+            <Mail className="mr-2 w-4 h-4 text-slate-500" />
+            <span>Posts</span>
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={() => signOut()}>
             <LogOut className="mr-2 w-4 h-4 text-slate-500" />
             <span>Log out</span>
@@ -54,19 +62,25 @@ function UserMenu() {
 function NavBar({ className, ...props }: { className?: string }) {
   return (
     <div
-      className={cn('border-b border-slate-100 h-16', className)}
+      className={cn('dark:border-slate-800 h-16', className)}
       {...props}
     >
-      <nav className="w-full h-full flex max-w-screen-xl mx-auto items-center px-8 py-2 justify-between">
+      <nav className="w-full h-full flex max-w-screen-lg mx-auto items-center px-8 py-2 justify-between">
         <div>
           <Link
             href="/"
             className="text-xl font-bold"
           >
-            X
+            <Image
+              src="/icon.png"
+              alt="logo"
+              width="32"
+              height="32"
+            />
           </Link>
         </div>
-        <div className="space-x-2">
+        <div className="flex space-x-4 items-center">
+          <ThemeSwitcher />
           <UserMenu />
         </div>
       </nav>

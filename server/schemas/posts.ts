@@ -7,3 +7,14 @@ export const createPostSchema = createInsertSchema(posts, {
 }).pick({ content: true })
 
 export type CreatePost = z.infer<typeof createPostSchema>
+
+export type Post = {
+  id: string
+  content: string
+  createdAt: Date
+  author: {
+    id: string
+    image: string
+    name: string
+  }
+}

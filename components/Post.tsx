@@ -1,14 +1,21 @@
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
+import { cn } from '@/utils/cn'
 
 export type PostProps = {
+  className?: string
   authorName: string
   authorImage?: string
   content: string
 }
 
-export function Post({ authorName, authorImage, content }: PostProps) {
+export function Post({
+  className,
+  authorName,
+  authorImage,
+  content,
+}: PostProps) {
   return (
-    <div className="flex border-slate-200 p-4 border-t items-start space-x-3">
+    <div className={cn('flex p-4 items-start space-x-3', className)}>
       <Avatar>
         <AvatarImage src={authorImage} />
       </Avatar>
