@@ -57,14 +57,7 @@ export default function Home() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (
-          !entry.isIntersecting ||
-          postQuery.isLoading ||
-          postQuery.isFetching ||
-          !postQuery.hasNextPage
-        )
-          return
-
+        if (!entry.isIntersecting || postQuery.isFetching) return
         postQuery.fetchNextPage()
       },
       { threshold: 0 },
