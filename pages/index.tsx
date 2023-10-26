@@ -13,7 +13,7 @@ export default function Home() {
     <div className="flex flex-col justify-center min-h-screen">
       <NavBar />
 
-      <div className="grow flex flex-col items-center px-8 pt-6 md:pb-12 md:pt-10 lg:py-20">
+      <div className="grow flex flex-col items-center py-6 md:pb-12 md:pt-10 lg:py-20">
         <section className="text-center">
           <Badge>Moineau</Badge>
           <p className="text-6xl font-heading font-bold mt-1">
