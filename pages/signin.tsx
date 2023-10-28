@@ -44,7 +44,7 @@ export default function SignIn() {
         />
 
         <h1 className="text-2xl font-bold mt-4">Welcome back!</h1>
-        <p className="text-slate-500 dark:text-slate-400 mt-1 text-lg">
+        <p className="text-gray-500 dark:text-gray-400 mt-1 text-lg">
           Sign in with your email to continue
         </p>
         <div className="mt-8 w-full flex flex-col space-y-4">
@@ -76,11 +76,11 @@ export default function SignIn() {
           </Form>
 
           <div className="flex items-center justify-center">
-            <div className="h-px bg-slate-200 dark:bg-slate-800 w-16 mr-2" />
-            <span className="text-slate-300 dark:text-slate-600 text-sm uppercase">
+            <div className="h-px bg-gray-200 dark:bg-gray-800 w-16 mr-2" />
+            <span className="text-gray-300 dark:text-gray-600 text-sm uppercase">
               or
             </span>
-            <div className="h-px bg-slate-200 dark:bg-slate-800 w-16 ml-2" />
+            <div className="h-px bg-gray-200 dark:bg-gray-800 w-16 ml-2" />
           </div>
 
           <Button

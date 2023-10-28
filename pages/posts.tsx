@@ -80,7 +80,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="max-w-lg w-full mx-auto border-b border-x border-slate-200 dark:border-slate-800 rounded-b-lg">
+      <div className="max-w-lg w-full mx-auto border-b border-x border-gray-200 dark:border-gray-800 rounded-b-lg">
         <section>
           <Form {...form}>
             <form
@@ -124,7 +124,7 @@ export default function Home() {
         <section>
           {posted.current?.map((post) => (
             <Post
-              className="border-t border-slate-200 dark:border-slate-800"
+              className="border-t border-gray-200 dark:border-gray-800"
               key={post.id}
               authorName={post.author.name || 'N/A'}
               authorImage={post.author.image || undefined}
@@ -133,7 +133,7 @@ export default function Home() {
           ))}
           {posts?.map((post) => (
             <Post
-              className="border-t border-slate-200 dark:border-slate-800"
+              className="border-t border-gray-200 dark:border-gray-800"
               key={post.id}
               authorName={post.author.name || 'N/A'}
               authorImage={post.author.image || undefined}

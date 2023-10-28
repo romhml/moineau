@@ -32,11 +32,11 @@ function UserMenu() {
 
         <DropdownMenuContent className="mr-2">
           <DropdownMenuItem onClick={() => router.push('/posts')}>
-            <Mail className="mr-2 w-4 h-4 text-slate-500" />
+            <Mail className="mr-2 w-4 h-4 text-gray-500" />
             <span>Posts</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => signOut()}>
-            <LogOut className="mr-2 w-4 h-4 text-slate-500" />
+            <LogOut className="mr-2 w-4 h-4 text-gray-500" />
             <span>Log out</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -62,7 +62,7 @@ function UserMenu() {
 function NavBar({ className, ...props }: { className?: string }) {
   return (
     <div
-      className={cn('dark:border-slate-800 h-16', className)}
+      className={cn('dark:border-gray-800 h-16 w-full', className)}
       {...props}
     >
       <nav className="w-full h-full flex max-w-screen-lg mx-auto items-center px-8 py-2 justify-between">
@@ -73,13 +73,13 @@ function NavBar({ className, ...props }: { className?: string }) {
           >
             <Image
               src="/icon.png"
-              alt="logo"
+              alt="moineau"
               width="32"
               height="32"
             />
           </Link>
         </div>
-        <div className="flex space-x-4 items-center">
+        <div className="flex space-x-1 items-center">
           <ThemeSwitcher />
           <UserMenu />
         </div>
