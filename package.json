@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "husky install && bun run --cwd node_modules/better-sqlite3 build-debug",
+    "prepare": "husky install",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
