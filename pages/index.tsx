@@ -50,7 +50,7 @@ export default function Home() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
-        <div className="grid grid-cols-3 max-w-screen-lg gap-1 w-full pt-4">
+        <div className="grid grid-cols-3 max-w-screen-lg gap-2 w-full pt-4">
           <FeatureCard
             icon={<Shield className="w-full h-full" />}
             title="Next.js"

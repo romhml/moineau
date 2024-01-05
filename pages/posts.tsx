@@ -102,10 +102,16 @@ export default function Home() {
                         placeholder="What's on your mind today?"
                         rows={5}
                         {...field}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault()
+                            form.handleSubmit(submit)()
+                          }
+                        }}
                       />
                     </div>
                     <div className="flex justify-between">
-                      <FormMessage />
+                      <FormMessage className="dark:text-red-400" />
                       <FormDescription />
                       <Button
                         type="submit"
